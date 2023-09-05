@@ -22,7 +22,7 @@ formatted_date = current_date.strftime("%B, %d, %Y")
 # Main loop
 while True:
     # Get the current time
-    current_time = datetime.now()
+    current_time = datetime.datetime.now()
 
     # Define the time at which you want to post the tweet (e.g., 8:00 AM)
     scheduled_time = current_time.replace(hour=8, minute=0, second=0, microsecond=0)
