@@ -1,6 +1,10 @@
 ## A Twitter bot that posts a tweet everyday at the same time(8AM EAT)
 Meet me on [Twitter](https://twitter.com/HelloPythonBot)
 
+### Requirements
+[Twitter Developer account](https://developer.twitter.com/en)
+[tweepy](https://docs.tweepy.org/en/stable/install.html)
+[Python3](https://www.python.org/downloads/)
 
 ### How it works
 
