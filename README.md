@@ -36,7 +36,7 @@ while True:
     if current_time == scheduled_time:
 
         # Post this tweet if condition is true
-        client.create_tweet(text="Hello Python 🐍. It is {formatted_date} today!🚀🚀.\nI am a bot 🤖. Meet me on https://github.com/Gerry-Aballa/twitter-Api-V2-bot")
+        client.create_tweet(text="Hello Python 🐍. It is {formatted_date} today!🚀🚀.\nI am a bot 🤖. Meet me on Github https://github.com/Gerry-Aballa/twitter-Api-V2-bot")
 
         # Wait for 24 hours before checking again
         time.sleep(24 * 3600)  # Sleep for 24 hours
