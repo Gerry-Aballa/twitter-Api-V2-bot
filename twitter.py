@@ -3,7 +3,7 @@
 
 import tweepy
 import time
-from datetime import datetime, timedelta
+from datetime import datetime
 import keys
 
 
