@@ -2,9 +2,14 @@
 Meet me on [Twitter](https://twitter.com/HelloPythonBot)
 
 ### Requirements
-[Twitter Developer account](https://developer.twitter.com/en)
-[tweepy](https://docs.tweepy.org/en/stable/install.html)
-[Python3](https://www.python.org/downloads/)
+- [Twitter Developer account](https://developer.twitter.com/en)
+- [tweepy](https://docs.tweepy.org/en/stable/install.html)
+- [requests](https://pypi.org/project/requests/)
+- [schedule](https://pypi.org/project/schedule/)
+
+```bash
+pip install -r requirements.txt
+```
 
 ### How it works
 
@@ -14,39 +19,47 @@ import tweepy
 import time
 import datetime
 import keys
+import schedule
 ```
 
-#### Step 2: Initialize Tweepy
+#### Step 2: Initialize Tweepy with Twitter API
 ```python
 client = tweepy.Client(keys.bearer_token, keys.api_key, keys.api_secret, keys.access_token, keys.access_token_secret)
 auth = tweepy.OAuthHandler(keys.api_key, keys.api_secret, keys.access_token, keys.access_token_secret)
 api = tweepy.API(auth)
 ```
 
-#### Step 3: Define the main loop
+#### Step 3: Create a method to send the tweet
 ```python
-while True:
-    # Get the current date and time
-    current_date = datetime.date.today()
-    current_time = daretime.datetime.now()
+# Get the current date and time
+current_date = datetime.date.today()
 
-    # Format the date as a string
-    formatted_date = current_date.strftime("%B, %d, %Y")
+# Format the date as a string
+formatted_date = current_date.strftime("%B, %d, %Y")
 
-    # Define the time at which you want to post the tweet (e.g., 8:00 AM)
-    scheduled_time = current_time.replace(hour=8, minute=0, second=0, microsecond=0)
 
-    # Check if the current time is equal to the scheduled time
-    if current_time == scheduled_time:
+def sendPost():
+    # Send the tweet
+    client.create_tweet(text=f"Hello Python 🐍. It is {formatted_date} today!🚀🚀.\nI am a bot 🤖. Meet me on Github https://github.com/Gerry-Aballa/twitter-Api-V2-bot")
 
-        # Post this tweet if condition is true
-        client.create_tweet(text="Hello Python 🐍. It is {formatted_date} today!🚀🚀.\nI am a bot 🤖. Meet me on Github https://github.com/Gerry-Aballa/twitter-Api-V2-bot")
+    # Print a message to indicate that the request was successful
+    print("Tweet posted successfully")
 
-        # Wait for 24 hours before checking again
-        time.sleep(24 * 3600)  # Sleep for 24 hours
+# Schedule the method to be exectued everday at a set time
+schedule.ever().day.at("8.00").do(sendPost)
 ```
 
-#### Step 4: Create a keys.py file and add your Twitter API keys
+#### Step 4: Define the main loop
+```python
+while True:
+    # Checks if scheduler has pending tasks
+    schedule.run_pending()
+
+    # Scheduler sleeps for 1 day
+    time.sleep(1)
+```
+
+#### Step 5: Create a keys.py file and add your Twitter API keys
 ```python
 bearer_token = "YOUR_BEARER_TOKEN"
 api_key = "YOUR_API_KEY"
@@ -55,7 +68,7 @@ access_token = "YOUR_ACCESS_TOKEN"
 access_token_secret = "YOUR_ACCESS_TOKEN_SECRET"
 ```
 
-#### Step 5: Run the bot
+#### Step 6: Run the bot
 ```
 python3 twitter.py
 ```
