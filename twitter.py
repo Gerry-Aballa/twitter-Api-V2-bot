@@ -27,7 +27,7 @@ def sendPost():
     print("Tweet posted successfully")
 
 # Schedule the method to be exectued everday at a set time
-schedule.ever().day.at("8.00").do(sendPost)
+schedule.ever().day.at("8:00").do(sendPost)
 
 # Main loop
 while True:
